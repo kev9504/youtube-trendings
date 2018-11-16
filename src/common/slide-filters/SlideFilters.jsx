@@ -96,7 +96,8 @@ class SlideFilters extends Component {
       <div className="slide-filters-container">
         <h3 className="title">
           Filters
-          <Button className="mat-icon-button">
+          <Button className="mat-icon-button"
+          onClick={()=>this.props.onToggleDrawer(false)}>
             <CloseIcon aria-label="Close"/>
           </Button>
         </h3>
@@ -186,7 +187,8 @@ class SlideFilters extends Component {
 
 SlideFilters.propTypes = {
   config   : PropTypes.object,
-  onChanges: PropTypes.func
+  onChanges: PropTypes.func,
+  onToggleDrawer: PropTypes.func
 };
 
 export default SlideFilters;

@@ -13,12 +13,12 @@ in filters, but categories are hardcoded and we want to fetch it from Youtube AP
 so more videos should be loaded when we scroll to the bottom of the page.
 
 ##### Bug fix:
-* When you mouse hovers the video, you can see "Likes" on every video component, but it shows always 0. Please fix it.
-* When we're trying to open some video to play it doesn't work please fix these bugs.
-* Slide-nav button (gear) is broken, when you click on it, nothing happens. It should open filters, please fix it.
-* When slide-nav is opened, the close button doesn't work, please fix it.
+* When you mouse hovers the video, you can see "Likes" on every video component, but it shows always 0.
+* When we're trying to open some video to play, it doesn't work.
+* Slide-nav button (gear) is broken, when you click on it, nothing happens. It should open filters.
+* When slide-nav is opened, the close button doesn't work.
 * On filters slide-nav, we have "Count of videos on the page" slider and when we trying to select more than 
-50 videos it shows error, please fix it.
+50 videos it shows error.
 * When we open the video on a separate page, filters button should be hidden.
 * In case is passed the wrong video id, the user should be redirected to a page with youtube videos.
 * Selected filters should be saved, so after we refreshed the page, filters should be the same as we chose before.
@@ -37,8 +37,8 @@ so more videos should be loaded when we scroll to the bottom of the page.
 * Implement Infinite scroll and append more videos to the bottom of the page
 * Fix bug with likes count
 * Fix bug with showing video on a separate page
-* Fix bug with opening filter navigation slide
-* Fix bug with closing filter navigation slide
+* Fix bug with opening filter navigation slide *done
+* Fix bug with closing filter navigation slide *done
 * Fix bug with selecting count of videos on the page when it's more than 50 videos
 * Filters button should be hidden when opened video page
 * In case if passed wrong video id, the user should be redirected on a page with youtube videos list

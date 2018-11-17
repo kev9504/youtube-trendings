@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Header from '../common/header/Header';

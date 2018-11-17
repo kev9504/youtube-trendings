@@ -1,3 +1,4 @@
+/* eslint-disable */
 import 'rc-slider/assets/index.css';
 import 'rc-tooltip/assets/bootstrap.css';
 import React, { Component } from 'react';
@@ -101,7 +102,8 @@ class SlideFilters extends Component {
             <CloseIcon aria-label="Close"/>
           </Button>
         </h3>
-        <Downshift id="countrySelect">
+        <Downshift id="countrySelect" 
+        onChange={selection=>window.alert(selection)}>
           {({
               getInputProps,
               getItemProps,
@@ -119,7 +121,11 @@ class SlideFilters extends Component {
               <div {...getMenuProps()}>
                 {isOpen ? (
                   <Paper square>
-                    {countryList.map((suggestion, index) =>
+                    {
+                    countryList
+                    .filter(item => !getInputProps().value.toLowerCase() || 
+                    item.name.toLowerCase().includes(getInputProps().value))
+                    .map((suggestion, index) =>
                       renderSuggestion({
                         suggestion,
                         index,
@@ -153,7 +159,10 @@ class SlideFilters extends Component {
               <div {...getMenuProps()}>
                 {isOpen ? (
                   <Paper square>
-                    {categoriesList.map((suggestion, index) =>
+                    {categoriesList
+                    .filter(item => !getInputProps().value.toLowerCase() || 
+                    item.name.toLowerCase().includes(getInputProps().value))
+                    .map((suggestion, index) =>
                       renderSuggestion({
                         suggestion,
                         index,
@@ -174,10 +183,10 @@ class SlideFilters extends Component {
           <div className="slider">
             <Slider
               min={1}
-              max={200}
+              max={50}
               defaultValue={this.props.config.maxVideosToLoad}
               handle={handle}
-              onAfterChange={videosToLoadChange}/>
+              onAfterChange={(val)=>videosToLoadChange(val)}/>
           </div>
         </div>
       </div>

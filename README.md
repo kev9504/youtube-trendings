@@ -13,7 +13,7 @@ in filters, but categories are hardcoded and we want to fetch it from Youtube AP
 so more videos should be loaded when we scroll to the bottom of the page.
 
 ##### Bug fix:
-* When you mouse hovers the video, you can see "Likes" on every video component, but it shows always 0.
+* When you mouse hovers the video, you can see "Likes" on every video component, but it shows always 0. *fixed
 * When we're trying to open some video to play, it doesn't work.
 * Slide-nav button (gear) is broken, when you click on it, nothing happens. It should open filters.
 * When slide-nav is opened, the close button doesn't work.
@@ -39,7 +39,7 @@ so more videos should be loaded when we scroll to the bottom of the page.
 * Fix bug with showing video on a separate page
 * Fix bug with opening filter navigation slide *done
 * Fix bug with closing filter navigation slide *done
-* Fix bug with selecting count of videos on the page when it's more than 50 videos
+* Fix bug with selecting count of videos on the page when it's more than 50 videos *done (youtube only permits from 1-50);
 * Filters button should be hidden when opened video page
 * In case if passed wrong video id, the user should be redirected on a page with youtube videos list
 * Filters should be the same as selected before on page refresh

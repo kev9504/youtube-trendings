@@ -26,11 +26,9 @@ class Youtube extends Component {
     this.props.setTitle('YOUTUBE');
     this.props.onChanges(() => this.loadVideos());
   }
-
   async loadVideos() {
     Axios.all(await service.getTrendingVideos(this.props.config.maxVideosToLoad))
          .then((data) => {
-           console.log(data);
            this.setState({
              trends: data,
              isError: false

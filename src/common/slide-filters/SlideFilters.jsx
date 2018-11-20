@@ -95,12 +95,12 @@ class SlideFilters extends Component {
     };
     const setFilter=(val)=>{
       this.props.config.selectedCategory=categoriesList.find(el=>el.name==val).id;
-      console.log(this.props.config.selectedCategory);
+      window.localStorage.setItem('trendings-category', this.props.config.selectedCategory);
       this.props.onChanges();
     }
     const setCountry=(val)=>{
       this.props.config.selectedRegion=this.props.config.countryList.find(el=>el.name==val).code;
-      console.log(this.props.config.selectedRegion);
+      window.localStorage.setItem('trendings-country', this.props.config.selectedRegion);
       this.props.onChanges();
     }
     return (

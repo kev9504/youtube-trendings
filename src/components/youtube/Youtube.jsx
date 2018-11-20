@@ -24,6 +24,14 @@ class Youtube extends Component {
 
   componentWillMount() {
     this.props.setTitle('YOUTUBE');
+    const cachedCategory=window.localStorage.getItem('trendings-category');
+    if(cachedCategory){
+      this.props.config.selectedCategory=cachedCategory;
+    }
+    const cachedCountry=window.localStorage.getItem('trendings-country');
+    if(cachedCountry){
+      this.props.config.selectedRegion=cachedCountry;
+    }
     this.props.onChanges(() => this.loadVideos());
   }
   async loadVideos() {

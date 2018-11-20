@@ -7,12 +7,15 @@ const axios = Axios.create({
 });
 
 export class YoutubeService {
-  getTrendingVideos(videosPerPage = appConfig.maxVideosToLoad) {
+  getTrendingVideos(
+    videosPerPage = appConfig.maxVideosToLoad, 
+    selectedRegion=appConfig.defaultRegion,
+    selectedCategory=appConfig.selectedCategory) {
     const params = {
       part: appConfig.partsToLoad,
       chart: appConfig.chart,
-      videoCategoryId: appConfig.defaultCategoryId,
-      regionCode: appConfig.defaultRegion,
+      videoCategoryId: selectedCategory,
+      regionCode: selectedRegion,
       maxResults: videosPerPage,
       key: appConfig.youtubeApiKey
     };

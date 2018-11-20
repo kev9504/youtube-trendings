@@ -5,7 +5,9 @@ export const appConfig = {
   partsToLoad        : 'snippet, statistics',
   chart              : 'mostPopular',
   defaultRegion      : 'US',
+  selectedRegion     : null,
   defaultCategoryId  : 10,
+  selectedCategory   : null,
   maxVideosToLoad    : 24,
   countryList        : [
     {name: 'Afghanistan', code: 'AF'},

@@ -11,7 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Tooltip from 'rc-tooltip';
 import Slider from 'rc-slider';
-
+import axios from 'axios';
 import './SlideFilters.scss';
 import { appConfig } from '../../config';
 
@@ -20,7 +20,7 @@ const categoriesList = [
   {name: 'Film & Animation', id: 1},
   {name: 'Autos & Vehicles', id: 2},
   {name: 'Music', id: 10},
-  {name: 'Pets & Animals', id: 4}
+  {name: 'Pets & Animals', id: 15}
 ];
 
 const Handle = Slider.Handle;
@@ -93,6 +93,16 @@ class SlideFilters extends Component {
       this.props.config.maxVideosToLoad = val;
       this.props.onChanges();
     };
+    const setFilter=(val)=>{
+      this.props.config.selectedCategory=categoriesList.find(el=>el.name==val).id;
+      console.log(this.props.config.selectedCategory);
+      this.props.onChanges();
+    }
+    const setCountry=(val)=>{
+      this.props.config.selectedRegion=this.props.config.countryList.find(el=>el.name==val).code;
+      console.log(this.props.config.selectedRegion);
+      this.props.onChanges();
+    }
     return (
       <div className="slide-filters-container">
         <h3 className="title">
@@ -103,7 +113,7 @@ class SlideFilters extends Component {
           </Button>
         </h3>
         <Downshift id="countrySelect" 
-        onChange={selection=>window.alert(selection)}>
+        onChange={(selection)=>setCountry(selection)}>
           {({
               getInputProps,
               getItemProps,
@@ -141,7 +151,8 @@ class SlideFilters extends Component {
           )}
         </Downshift>
         <div className="divider"/>
-        <Downshift id="categorySelect">
+        <Downshift id="categorySelect"
+        onChange={(selection)=>setFilter(selection)}>
           {({
               getInputProps,
               getItemProps,

@@ -10,7 +10,6 @@ import { appConfig } from '../config';
 const config = appConfig;
 let store;
 const onChanges = (fn) => {
-  console.log('changed');
   if (fn) {
     store = fn;
   }

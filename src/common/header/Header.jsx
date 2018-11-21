@@ -1,9 +1,10 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Drawer from '@material-ui/core/Drawer';
 import PropTypes from 'prop-types';
-
+import {withRouter} from 'react-router-dom';
 import './Header.scss';
 import Logo from '../../../public/logo.svg';
 import SlideFilters from '../slide-filters/SlideFilters';
@@ -24,8 +25,14 @@ class Header extends Component {
   toggleDrawer=(open)=>{
     this.setState({drawerIsOpened: open});
   }
-
+  
   render() {
+    let filterGearButton=null
+    if(this.props.location.pathname=="/youtube"){
+      filterGearButton=<Button className="menu-toggle" onClick={()=>this.toggleDrawer(true)}>
+                  <SettingsIcon aria-label="Settings"/>
+                 </Button>
+    }
     return (
       <div id="page-header">
         <nav>
@@ -35,9 +42,7 @@ class Header extends Component {
           <div className="opened-module-title">
             {this.state.title}
           </div>
-          <Button className="menu-toggle" onClick={()=>this.toggleDrawer(true)}>
-            <SettingsIcon aria-label="Settings"/>
-          </Button>
+          {filterGearButton}
         </nav>
         <Drawer
           anchor="right"
@@ -61,4 +66,4 @@ Header.propTypes = {
   onToggleDrawer: PropTypes.func,
 };
 
-export default Header;
+export default withRouter(Header);

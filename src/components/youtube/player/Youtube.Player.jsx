@@ -2,33 +2,42 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import './Youtube.Player.scss';
-
+import Youtube from 'react-youtube';
+import {Redirect} from 'react-router-dom';
 class YoutubePlayer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+  state={
+    id:null,
+    error: false,
+  }
+  componentWillMount(){
     const id = window.location.href
       .replace(/^.*\//g, '')
       .replace(/^.*\..*/g, '');
-    const iframe = `<iframe 
-    title="Video" 
-    width="100%" 
-    height="100%"
-    id="enbded-frame"
-    src="https://www.youtube.com/embed/${id}?autoplay=1"
-    frameBorder="0" 
-    allowFullScreen/>`;
-
-    setTimeout(() => {
-      if(document.getElementsByClassName('frame-block')[0]) {
-        document.getElementsByClassName('frame-block')[0].innerHTML = iframe;
-      }
-    }, 1000);
+    if(id.length!==11){
+      this.setState({error: true})
+    }else{
+      this.setState({id: id});
+    }
   }
   render() {
+    const opts = {
+      height: '100%',
+      width: '100%',
+      playerVars: {
+        autoplay: 1,
+      }
+    };
     return (
-      <div className="video-container">
-        <div className="frame-block" id="v-frame"/>
+      this.state.error
+      ?<Redirect to="/youtube"/>
+      :<div className="video-container">
+        <div className="frame-block">
+        <Youtube 
+        videoId={this.state.id}
+        opts={opts}
+        onError={()=>this.setState({error: true})}
+        onReady={(e)=>e.target.playVideo()}/>
+        </div>
         <div className="controls">
           <Link className="btn btn-primary" to="/youtube"> &#60; Back to Trends</Link>
         </div>

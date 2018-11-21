@@ -41,7 +41,8 @@ so more videos should be loaded when we scroll to the bottom of the page.
 * Fix bug with closing filter navigation slide *done
 * Fix bug with selecting count of videos on the page when it's more than 50 videos *done (youtube only permits from 1-50 on each load);
 * Filters button should be hidden when opened video page *done
-* In case if passed wrong video id, the user should be redirected on a page with youtube videos list
+* In case if passed wrong video id, the user should be redirected on a page with youtube videos list *done but I was not sure, 
+* so I redirected to main (I implemented both, redirection if youtube id is not correct length or if the player id does not exist)
 * Filters should be the same as selected before on page refresh *done
 * Unit tests coverage should be not less than 60%, higher -> better
 

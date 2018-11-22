@@ -11,18 +11,13 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Tooltip from 'rc-tooltip';
 import Slider from 'rc-slider';
-import axios from 'axios';
+import Axios from 'axios';
 import './SlideFilters.scss';
 import { appConfig } from '../../config';
+import {CategoriesService} from '../../services/youtube/Youtube';
 
+const service = new CategoriesService();
 const countryList = appConfig.countryList;
-const categoriesList = [
-  {name: 'Film & Animation', id: 1},
-  {name: 'Autos & Vehicles', id: 2},
-  {name: 'Music', id: 10},
-  {name: 'Pets & Animals', id: 15}
-];
-
 const Handle = Slider.Handle;
 
 const handle = (props) => {
@@ -88,18 +83,32 @@ renderSuggestion.propTypes = {
 
 
 class SlideFilters extends Component {
+  state={
+    categoriesList:[]
+  }
+  componentWillMount(){
+    this.loadCategories();
+  }
+  async loadCategories(){
+    Axios.all(await service.getCategories())
+    .then(data=>{
+      this.setState({categoriesList: data});
+    })
+    .catch(err=>console.log(err));
+  }
   render() {
     const videosToLoadChange = (val) => {
       this.props.config.maxVideosToLoad = val;
       this.props.onChanges();
     };
     const setFilter=(val)=>{
-      this.props.config.selectedCategory=categoriesList.find(el=>el.name==val).id;
+      this.props.config.selectedCategory=this.state.categoriesList.find(el=>el.name==val).id;
       window.localStorage.setItem('trendings-category', this.props.config.selectedCategory);
       this.props.onChanges();
     }
     const setCountry=(val)=>{
-      this.props.config.selectedRegion=this.props.config.countryList.find(el=>el.name==val).code;
+      this.props.config.selectedRegion=this.props.config.countryList
+      .find(el=>el.name==val).code;
       window.localStorage.setItem('trendings-country', this.props.config.selectedRegion);
       this.props.onChanges();
     }
@@ -170,10 +179,11 @@ class SlideFilters extends Component {
               <div {...getMenuProps()}>
                 {isOpen ? (
                   <Paper square>
-                    {categoriesList
-                    .filter(item => !getInputProps().value.toLowerCase() || 
-                    item.name.toLowerCase().includes(getInputProps().value))
-                    .map((suggestion, index) =>
+                    {
+                      this.state.categoriesList
+                      .filter(item=>!getInputProps().value.toLowerCase() || 
+                      item.name.toLowerCase().includes(getInputProps().value))
+                      .map((suggestion, index) =>
                       renderSuggestion({
                         suggestion,
                         index,

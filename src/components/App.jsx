@@ -7,6 +7,7 @@ import Youtube from './youtube/Youtube';
 import YoutubePlayer from './youtube/player/Youtube.Player';
 import { appConfig } from '../config';
 
+
 const config = appConfig;
 let store;
 const onChanges = (fn) => {

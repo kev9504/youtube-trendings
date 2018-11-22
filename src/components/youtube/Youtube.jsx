@@ -21,7 +21,14 @@ class Youtube extends Component {
       isError: false
     };
   }
-
+  componentDidMount(){
+    window.addEventListener('scroll', this.handleScroll);
+  }
+  handleScroll=(e)=>{
+    if(Math.ceil(window.scrollY)+window.innerHeight===document.body.offsetHeight){
+      this.props.onChanges(()=>this.loadMoreVideos());
+    }
+  }
   componentWillMount() {
     this.props.setTitle('YOUTUBE');
     const cachedCategory=window.localStorage.getItem('trendings-category');
@@ -50,14 +57,33 @@ class Youtube extends Component {
            console.log(err);
          });
   }
+  async loadMoreVideos(){
+    Axios.all(await service.getTrendingVideos(
+      this.props.config.maxVideosToLoad,
+      this.props.config.selectedRegion,
+      this.props.config.selectedCategory,
+      this.props.config.pageToken))
+      .then(data=>{
+        data.map(el=>{
+          const newTrendingArr=[...this.state.trends];
+          newTrendingArr.push(el);
+          this.setState({trends: newTrendingArr});
+        });
+      }).catch(err=>{
+        this.setState({isError: true});
+        console.log(err);
+      })
+  }
 
   openVideo() {
     return window.location.href = '/youtube/' + this;
   }
 
   youtubeCard() {
-    return this.state.trends.map((videos, index) =>
-      <div key={index} className="card-container">
+    return this.state.trends.map((videos, index) =>(
+      <div 
+      key={index} 
+      className="card-container">
         <div className="card" onClick={this.openVideo.bind(videos.id)}>
           <div className="img-container">
             <img src={videos.thumbnail} alt={videos.title}/>
@@ -81,8 +107,7 @@ class Youtube extends Component {
             {videos.title}
           </p>
         </div>
-      </div>
-    );
+      </div>));
   }
 
   errorOnPage() {
@@ -93,7 +118,10 @@ class Youtube extends Component {
   }
 
   render() {
-    return !this.state.isError ? ( <div id="youtube">
+    return !this.state.isError ? ( 
+    <div 
+    id="youtube"
+    ref="iScroll">
       <div className="row">
         {this.youtubeCard()}
       </div>

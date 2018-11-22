@@ -9,6 +9,7 @@ export const appConfig = {
   defaultCategoryId  : 10,
   selectedCategory   : null,
   maxVideosToLoad    : 24,
+  pageToken      : '',
   countryList        : [
     {name: 'Afghanistan', code: 'AF'},
     {name: 'Åland Islands', code: 'AX'},

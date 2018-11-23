@@ -26,7 +26,7 @@ class Youtube extends Component {
   }
   handleScroll=(e)=>{
     if(Math.ceil(window.scrollY)+window.innerHeight===document.body.offsetHeight){
-      this.props.onChanges(()=>this.loadMoreVideos());
+      this.loadMoreVideos();
     }
   }
   componentWillMount() {
@@ -45,7 +45,8 @@ class Youtube extends Component {
     Axios.all(await service.getTrendingVideos(
       this.props.config.maxVideosToLoad,
       this.props.config.selectedRegion,
-      this.props.config.selectedCategory))
+      this.props.config.selectedCategory, 
+      " "))
          .then((data) => {
            this.setState({
              trends: data,

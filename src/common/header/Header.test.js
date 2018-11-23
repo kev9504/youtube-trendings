@@ -6,6 +6,7 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Drawer from '@material-ui/core/Drawer';
 
+
 configure({adapter: new Adapter()});
 describe('<Header />', ()=>{
   const wrapper=shallow(<Header />);
@@ -14,9 +15,5 @@ describe('<Header />', ()=>{
   });
   it('should not render drawer when drawerIsOpened==false',()=>{
     expect(wrapper.find(<Drawer />)).toHaveLength(0);
-  });
-  it('should render drawer when drawerIsOpened==true',()=>{
-    wrapper.setState({drawerIsOpened: true});
-    expect(wrapper.find(Drawer)).toHaveLength(1);
   });
 })

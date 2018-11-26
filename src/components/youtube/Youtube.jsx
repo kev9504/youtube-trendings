@@ -1,4 +1,4 @@
-/* eslint-disable */
+/*eslint no-console: ["error", { allow: ["error"] }] */
 import React, { Component } from 'react';
 import Axios from 'axios';
 import MovieIcon from '@material-ui/icons/Movie';
@@ -46,7 +46,7 @@ class Youtube extends Component {
       this.props.config.maxVideosToLoad,
       this.props.config.selectedRegion,
       this.props.config.selectedCategory, 
-      " "))
+      ' '))
          .then((data) => {
            this.setState({
              trends: data,
@@ -55,7 +55,7 @@ class Youtube extends Component {
          })
          .catch((err) => {
            this.setState({isError: true});
-           console.log(err);
+           console.error(err);
          });
   }
   async loadMoreVideos(){
@@ -72,8 +72,8 @@ class Youtube extends Component {
         });
       }).catch(err=>{
         this.setState({isError: true});
-        console.log(err);
-      })
+        console.error(err);
+      });
   }
 
   openVideo() {
@@ -121,8 +121,7 @@ class Youtube extends Component {
   render() {
     return !this.state.isError ? ( 
     <div 
-    id="youtube"
-    ref="iScroll">
+    id="youtube">
       <div className="row">
         {this.youtubeCard()}
       </div>

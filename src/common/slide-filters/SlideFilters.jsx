@@ -1,4 +1,4 @@
-/* eslint-disable */
+/*eslint no-console: ["error", { allow: ["error"] }] */
 import 'rc-slider/assets/index.css';
 import 'rc-tooltip/assets/bootstrap.css';
 import React, { Component } from 'react';
@@ -94,20 +94,20 @@ class SlideFilters extends Component {
     .then(data=>{
       this.setState({categoriesList: data});
     })
-    .catch(err=>console.log(err));
+    .catch(err=>console.error(err));
   }
   videosToLoadChange = (val) => {
     this.props.config.maxVideosToLoad = val;
     this.props.onChanges();
     };
   setFilter=(val)=>{
-    this.props.config.selectedCategory=this.state.categoriesList.find(el=>el.name==val).id;
+    this.props.config.selectedCategory=this.state.categoriesList.find(el=>el.name===val).id;
     window.localStorage.setItem('trendings-category', this.props.config.selectedCategory);
     this.props.onChanges();
     }
   setCountry=(val)=>{
     this.props.config.selectedRegion=this.props.config.countryList
-    .find(el=>el.name==val).code;
+    .find(el=>el.name===val).code;
     window.localStorage.setItem('trendings-country', this.props.config.selectedRegion);
     this.props.onChanges();
     }

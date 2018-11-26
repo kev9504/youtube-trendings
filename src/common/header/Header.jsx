@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -27,11 +26,11 @@ export class Header extends Component {
   }
   
   render() {
-    let filterGearButton=null
-    if(this.props.location.pathname=="/youtube"||this.props.location.pathname=="/youtube/"){
+    let filterGearButton=null;
+    if(this.props.location.pathname==='/youtube'||this.props.location.pathname==='/youtube/'){
       filterGearButton=<Button className="menu-toggle" onClick={()=>this.toggleDrawer(true)}>
                   <SettingsIcon aria-label="Settings"/>
-                 </Button>
+                 </Button>;
     }
     return (
       <div id="page-header">
@@ -64,6 +63,7 @@ Header.propTypes = {
   config: PropTypes.object,
   onChanges: PropTypes.func,
   onToggleDrawer: PropTypes.func,
+  location: PropTypes.object,
 };
 
 export default withRouter(Header);

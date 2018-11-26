@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import './Youtube.Player.scss';
@@ -14,10 +13,14 @@ class YoutubePlayer extends Component {
       .replace(/^.*\//g, '')
       .replace(/^.*\..*/g, '');
     if(id.length!==11){
-      this.setState({error: true})
+      this.handleError();
     }else{
       this.setState({id: id});
     }
+  }
+  handleError=()=>{
+    window.alert('invalid video id. You\'ll be redirected to the main page');
+    this.setState({error: true});
   }
   render() {
     const opts = {
@@ -35,7 +38,7 @@ class YoutubePlayer extends Component {
         <Youtube 
         videoId={this.state.id}
         opts={opts}
-        onError={()=>this.setState({error: true})}
+        onError={()=>this.handleError()}
         onReady={(e)=>e.target.playVideo()}/>
         </div>
         <div className="controls">

@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import Axios from 'axios';
 import {appConfig} from '../../config';
 import {VideoClass} from '../../models/video.class';
@@ -22,7 +21,8 @@ export class CategoriesService{
       return res.data.items
       .map(item=>new CategoryClass(item))
       .filter(item=>{
-        const filterName=appConfig.nonWorkingFilters.find(i=>i.name==item.name);
+        const filterName=appConfig.nonWorkingFilters
+        .find(i=>i.name===item.name);
         if(filterName===undefined)return true;
       })
       .filter(item=>item.id!=='');

@@ -36,7 +36,7 @@ describe('<Header />', ()=>{
     expect(wrapper.find('#page-header')).toHaveLength(1);
   });
   it('should render filter menu',()=>{
-    expect(wrapper.find('.menu-toggle')).toBeDefined();
+    expect(wrapper.find('.menu-toggle')).toHaveLength(1);
   });
   it('should not render gear if on video path',()=>{
     const location={pathname: '/youtube/h9OiEQzfrt4'};
@@ -44,7 +44,7 @@ describe('<Header />', ()=>{
     expect(wrapper.find('.menu-toggle')).toHaveLength(0);
   });
   it('should render drawer',()=>{
-    expect(wrapper.find(Drawer)).toBeDefined();
+    expect(wrapper.find(Drawer)).toHaveLength(1);
   });
   it('should toggle drawer true',()=>{
     wrapper.instance().toggleDrawer(true);

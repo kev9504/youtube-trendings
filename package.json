@@ -17,7 +17,7 @@
     ]
   },
   "jest": {
-    "testURL": "http://localhost",
+    "testURL": "http://localhost:3000",
     "collectCoverage": true,
     "coverageReporters": ["html"],
     "collectCoverageFrom": [

@@ -1,12 +1,10 @@
-/* eslint-disable */
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import Header from '../common/header/Header';
 import './App.scss';
 import Youtube from './youtube/Youtube';
 import YoutubePlayer from './youtube/player/Youtube.Player';
 import { appConfig } from '../config';
-
 
 const config = appConfig;
 let store;

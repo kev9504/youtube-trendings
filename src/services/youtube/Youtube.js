@@ -21,6 +21,10 @@ export class CategoriesService{
     return axios.get('/',{params}).then(res=>{
       return res.data.items
       .map(item=>new CategoryClass(item))
+      .filter(item=>{
+        const filterName=appConfig.nonWorkingFilters.find(i=>i.name==item.name);
+        if(filterName===undefined)return true;
+      })
       .filter(item=>item.id!=='');
     }).catch(err=>err);
   }
@@ -43,9 +47,8 @@ export class YoutubeService {
     };
     return axios.get('/', {params}).then((res) => {
       appConfig.pageToken=res.data.nextPageToken;
-      return res.data.items
-        .map((item) => new VideoClass(item))
-        .filter((item) => item.id !== '');
+      return res.data.items.map((item) =>new VideoClass(item))
+      .filter((item) => item.id !== '');
     }).catch((err) => err);
   }
 }

@@ -9,7 +9,7 @@ import './Header.scss';
 import Logo from '../../../public/logo.svg';
 import SlideFilters from '../slide-filters/SlideFilters';
 
-class Header extends Component {
+export class Header extends Component {
   state = {
     drawerIsOpened: false,
     title: ''
@@ -28,7 +28,7 @@ class Header extends Component {
   
   render() {
     let filterGearButton=null
-    if(this.props.location.pathname=="/youtube"){
+    if(this.props.location.pathname=="/youtube"||this.props.location.pathname=="/youtube/"){
       filterGearButton=<Button className="menu-toggle" onClick={()=>this.toggleDrawer(true)}>
                   <SettingsIcon aria-label="Settings"/>
                  </Button>

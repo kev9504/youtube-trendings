@@ -29,7 +29,7 @@ class YoutubePlayer extends Component {
     };
     return (
       this.state.error
-      ?<Redirect to="/youtube"/>
+      ?<Redirect to="/"/>
       :<div className="video-container">
         <div className="frame-block">
         <Youtube 

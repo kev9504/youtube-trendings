@@ -96,22 +96,22 @@ class SlideFilters extends Component {
     })
     .catch(err=>console.log(err));
   }
-  render() {
-    const videosToLoadChange = (val) => {
-      this.props.config.maxVideosToLoad = val;
-      this.props.onChanges();
+  videosToLoadChange = (val) => {
+    this.props.config.maxVideosToLoad = val;
+    this.props.onChanges();
     };
-    const setFilter=(val)=>{
-      this.props.config.selectedCategory=this.state.categoriesList.find(el=>el.name==val).id;
-      window.localStorage.setItem('trendings-category', this.props.config.selectedCategory);
-      this.props.onChanges();
+  setFilter=(val)=>{
+    this.props.config.selectedCategory=this.state.categoriesList.find(el=>el.name==val).id;
+    window.localStorage.setItem('trendings-category', this.props.config.selectedCategory);
+    this.props.onChanges();
     }
-    const setCountry=(val)=>{
-      this.props.config.selectedRegion=this.props.config.countryList
-      .find(el=>el.name==val).code;
-      window.localStorage.setItem('trendings-country', this.props.config.selectedRegion);
-      this.props.onChanges();
+  setCountry=(val)=>{
+    this.props.config.selectedRegion=this.props.config.countryList
+    .find(el=>el.name==val).code;
+    window.localStorage.setItem('trendings-country', this.props.config.selectedRegion);
+    this.props.onChanges();
     }
+  render() {
     return (
       <div className="slide-filters-container">
         <h3 className="title">
@@ -122,7 +122,7 @@ class SlideFilters extends Component {
           </Button>
         </h3>
         <Downshift id="countrySelect" 
-        onChange={(selection)=>setCountry(selection)}>
+        onChange={(selection)=>this.setCountry(selection)}>
           {({
               getInputProps,
               getItemProps,
@@ -143,7 +143,7 @@ class SlideFilters extends Component {
                     {
                     countryList
                     .filter(item => !getInputProps().value.toLowerCase() || 
-                    item.name.toLowerCase().includes(getInputProps().value))
+                    item.name.toLowerCase().includes(getInputProps().value.toLowerCase()))
                     .map((suggestion, index) =>
                       renderSuggestion({
                         suggestion,
@@ -161,7 +161,7 @@ class SlideFilters extends Component {
         </Downshift>
         <div className="divider"/>
         <Downshift id="categorySelect"
-        onChange={(selection)=>setFilter(selection)}>
+        onChange={(selection)=>this.setFilter(selection)}>
           {({
               getInputProps,
               getItemProps,
@@ -182,7 +182,7 @@ class SlideFilters extends Component {
                     {
                       this.state.categoriesList
                       .filter(item=>!getInputProps().value.toLowerCase() || 
-                      item.name.toLowerCase().includes(getInputProps().value))
+                      item.name.toLowerCase().includes(getInputProps().value.toLowerCase()))
                       .map((suggestion, index) =>
                       renderSuggestion({
                         suggestion,
@@ -207,7 +207,7 @@ class SlideFilters extends Component {
               max={50}
               defaultValue={this.props.config.maxVideosToLoad}
               handle={handle}
-              onAfterChange={(val)=>videosToLoadChange(val)}/>
+              onAfterChange={(val)=>this.videosToLoadChange(val)}/>
           </div>
         </div>
       </div>

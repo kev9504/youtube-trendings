@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import Axios from 'axios';
 import {appConfig} from '../../config';
 import {VideoClass} from '../../models/video.class';

@@ -44,9 +44,8 @@ so more videos should be loaded when we scroll to the bottom of the page.
 * In case if passed wrong video id, the user should be redirected on a page with youtube videos list *done but I was not sure, 
 so I redirected to main (I implemented both, redirection if youtube id is not correct length or if the player id does not exist)
 * Filters should be the same as selected before on page refresh *done
-* Filters should be fetched from youtube *done but some countries do not have 
-trendings for each of the categories
-* Unit tests coverage should be not less than 60%, higher -> better
+* Filters should be fetched from youtube *done, but filtered categories that don't have trendings option
+* Unit tests coverage should be not less than 60%, higher -> better *done
 
 ##### PLEASE NOTE THAT ALL THE TASKS LISTED ABOVE ARE MANDATORY. We'll be evaluating your submission from the following perspectives:
 * Code quality and best practices
